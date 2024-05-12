@@ -18,17 +18,18 @@ h2{
 .header__container{
     background-color: white;
     display: flex;
+    align-items: center;
+    justify-content: center;
     height: 10vh;
 }
 
 .header__content{
     display: flex;
-    margin: auto;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    width:70%;
-
+    margin: 0 20%;
+    width:100%;
 }
 
 .header__input--search{
@@ -50,7 +51,6 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: left;
-    width: 60vw;
     align-self: center;
     margin-top: 4vh;
     padding: 3%;
@@ -120,8 +120,39 @@ h2{
     display: flex;
     margin-top: 5vh;
     justify-content: space-between;
+    position: relative;
 }
 
+.task__item::before {
+    position: absolute;
+    content: " ";
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    transform: translateY(-50%); 
+    left: 16px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+
+.task__item:nth-child(1)::before {
+    background: red;
+}
+
+
+.task__item:nth-child(2)::before {
+    background: yellow;
+}
+
+.task__item:nth-child(3)::before {
+    background: green;
+}
+
+
+.task-info__container {
+    margin-left: 16px;
+}
 .tasks__list{
     display: flex;
     flex-direction: column;
@@ -140,7 +171,7 @@ h2{
     padding: 3vh;
 }
 
-.span-urgent {
+/* .span-urgent {
     height: 8px;
     width: 8px;
     border-radius: 100%;
@@ -158,4 +189,4 @@ h2{
     width: 8px;
     border-radius: 100%;
     background-color: green;  
-}
+} */
