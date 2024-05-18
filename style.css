@@ -123,7 +123,7 @@ h2{
     position: relative;
 }
 
-.task__item::before {
+span::before {
     position: absolute;
     content: " ";
     width: 7px;
@@ -136,16 +136,16 @@ h2{
 }
 
 
-.task__item:nth-child(1)::before {
+.span-urgent:nth-child(1)::before {
     background: red;
 }
 
 
-.task__item:nth-child(2)::before {
+.span-important:nth-child(1)::before {
     background: yellow;
 }
 
-.task__item:nth-child(3)::before {
+.span-normal:nth-child(1)::before {
     background: green;
 }
 
