@@ -29,7 +29,7 @@ h2{
     flex-direction: row;
     align-items: center;
     margin: 0 20%;
-    width:100%;
+    width: 100%;
 }
 
 .header__input--search{
@@ -70,7 +70,6 @@ h2{
 
 #input_title {
     width: 50%;
-
 }
 
 .form__input--text{
@@ -121,38 +120,23 @@ h2{
     margin-top: 5vh;
     justify-content: space-between;
     position: relative;
+    padding: 3vh;
+    background-color: #ebebeb;
+    border-radius: 5px;
 }
 
-span::before {
-    position: absolute;
-    content: " ";
-    width: 7px;
-    height: 7px;
-    top: 50%;
-    transform: translateY(-50%); 
-    left: 16px;
-    border-radius: 10px;
-    z-index: 10;
+.task-type {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
-
-
-.span-urgent:nth-child(1)::before {
-    background: red;
-}
-
-
-.span-important:nth-child(1)::before {
-    background: yellow;
-}
-
-.span-normal:nth-child(1)::before {
-    background: green;
-}
-
 
 .task-info__container {
-    margin-left: 16px;
+    display: flex;
+    align-items: center;
 }
+
 .tasks__list{
     display: flex;
     flex-direction: column;
@@ -160,33 +144,27 @@ span::before {
 
 .task__button--remove-task{
     background-image: url(assets/trash-icon.svg);
+    width: 12px;
+    height: 12px;
     border: none;
     cursor: pointer;
     background-repeat: no-repeat;
 }
 
-.task__item {
-    background-color: #ebebeb;
-    border-radius: 5px;
-    padding: 3vh;
-}
-
-/* .span-urgent {
-    height: 8px;
+.span-urgent {
+    background: red;
     width: 8px;
-    border-radius: 100%;
-    background-color: red;
+    height: 8px;
 }
 
 .span-important {
-    height: 8px;
+    background: yellow;
     width: 8px;
-    border-radius: 100%;
-    background-color: yellow;
+    height: 8px;
 }
+
 .span-normal {
-    height: 8px;
+    background: green;
     width: 8px;
-    border-radius: 100%;
-    background-color: green;  
-} */
+    height: 8px;
+}

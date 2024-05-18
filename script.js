@@ -1,63 +1,3 @@
-// const tasks = [
-//   {title: "Comprar comida para o gato", type: "Urgente"},
-//   {title: "Consertar Computador", type: "Importante"},
-//   {title: "Beber água", type: "Normal"},
-//   {title: "Enviar relatório trimestral", type: "Importante"},
-//   {title: "Fazer exercícios físicos", type: "Normal"},
-//   {title: "Agendar consulta médica", type: "Urgente"},
-//   {title: "Ler pelo menos um capítulo de um livro", type: "Normal"},
-//   {title: "Limpar a despensa", type: "Importante"},
-//   {title: "Pagar a conta de energia", type: "Urgente"},
-//   {title: "Assistir a um documentário interessante", type: "Normal"},
-// ];
-
-// function renderElements (task){
-//   let getList = document.querySelector("ul");
-//   getList.classList.add(tasks__list);
-
-//   task.forEach(element => {
-//     const taskItem = createTaskItem(task);
-
-//     getList.appendChild(taskItem);
-    
-//   });
-
-// }
-
-// function createTaskItem (task){ 
-
-//   for (let i = 0; i < task.length; i++){
-
-//     let listItem = document.createElement("li");
-//     listItem.classList.add("task__item");
-  
-//     let divs = document.createElement("div");
-//     divs.classList.add("task-info__container");
-
-
-//     let spans = document.createElement("span");
-//     if (task[i].type == "Urgente"){
-//       spans.classList.add("span-urgent"); 
-//     } else if (task[i].type == "Importante"){
-//       spans.classList.add("span-important");
-//     } else if (task[i].type == "Normal"){
-//       spans.classList.add("span-normal");
-//     }
-
-
-
-//     let paragraph = document.createElement("p");
-
-//     let deleteTask = document.createElement("button");
-//     deleteTask.classList.add("task__button--remove-task");
-  
-//     listItem.appendChild(divs);
-//     divs.appendChild(spans);
-//     divs.appendChild(paragraph);
-//     listItem.appendChild(deleteTask);  
-//   }
-// }
-
 const tasks = [
   { title: "Comprar comida para o gato", type: "Urgente" },
   { title: "Consertar Computador", type: "Importante" },
@@ -68,20 +8,18 @@ const tasks = [
   { title: "Ler pelo menos um capítulo de um livro", type: "Normal" },
   { title: "Limpar a despensa", type: "Importante" },
   { title: "Pagar a conta de energia", type: "Urgente" },
-  { title: "Assistir a um documentário interessante", type: "Normal" }, 
   { title: "Assistir a um documentário interessante", type: "Normal" },
 ];
 
 // Função para criar um elemento de tarefa
-function createTaskItem(task) {
+function createTaskItem(task, index) {
   const li = document.createElement('li');
   li.classList.add('task__item');
 
-  const div = document.createElement('div');
-  div.classList.add('task-info__container');
-
   const span = document.createElement('span');
   span.classList.add('task-type');
+
+  // Adicionar classe de estilo com base no tipo da tarefa
   if (task.type === 'Urgente') {
     span.classList.add('span-urgent');
   } else if (task.type === 'Importante') {
@@ -93,13 +31,17 @@ function createTaskItem(task) {
   const p = document.createElement('p');
   p.textContent = task.title;
 
-  div.appendChild(span);
-  div.appendChild(p);
-
   const button = document.createElement('button');
   button.classList.add('task__button--remove-task');
+  button.addEventListener('click', () => {
+    // Remover a tarefa do array pelo seu índice
+    tasks.splice(index, 1);
+    // Atualizar a lista de tarefas na tela
+    renderElements(tasks);
+  });
 
-  li.appendChild(div);
+  li.appendChild(span);
+  li.appendChild(p);
   li.appendChild(button);
 
   return li;
@@ -110,11 +52,39 @@ function renderElements(tasks) {
   const taskList = document.querySelector('.tasks__list');
   taskList.innerHTML = ''; // Limpar a lista antes de renderizar
 
-  tasks.forEach(task => {
-    const taskItem = createTaskItem(task);
+  tasks.forEach((task, index) => {
+    const taskItem = createTaskItem(task, index);
     taskList.appendChild(taskItem);
   });
 }
+
+// Função para adicionar uma nova tarefa
+function addTask() {
+  const titleInput = document.querySelector('#input_title');
+  const typeInput = document.querySelector('.form__input--priority');
+
+  const newTask = {
+    title: titleInput.value,
+    type: typeInput.value
+  };
+
+  // Adicionando a nova tarefa ao array
+  tasks.push(newTask);
+
+  // Renderizando novamente a lista de tarefas
+  renderElements(tasks);
+
+  // Limpar os campos de input
+  titleInput.value = '';
+  typeInput.value = '';
+}
+
+// Adicionar evento de clique ao botão "Adicionar Tarefa na Lista"
+const addButton = document.querySelector('.form__button--add-task');
+addButton.addEventListener('click', function(event) {
+  event.preventDefault(); // Prevenir o comportamento padrão do formulário
+  addTask();
+});
 
 // Chamar a função para renderizar os elementos
 renderElements(tasks);
