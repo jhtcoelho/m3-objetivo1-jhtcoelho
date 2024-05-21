@@ -72,14 +72,6 @@ function addTask() {
     type: typeInput.value
   };
 
-  if (newTask.type === 'Urgente') {
-    newTask.classList.add('span-urgent');
-  } else if (task.type === 'Importante') {
-    newTask.classList.add('span-important');
-  } else if (task.type === 'Normal') {
-    newTask.classList.add('span-normal');
-  }
-
   // Adicionando a nova tarefa ao array
   tasks.push(newTask);
 
