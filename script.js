@@ -16,6 +16,9 @@ function createTaskItem(task, index) {
   const li = document.createElement('li');
   li.classList.add('task__item');
 
+  const divs = document.createElement('div');
+  divs.classList.add('task-info__container');
+
   const span = document.createElement('span');
   span.classList.add('task-type');
 
@@ -40,8 +43,9 @@ function createTaskItem(task, index) {
     renderElements(tasks);
   });
 
-  li.appendChild(span);
-  li.appendChild(p);
+  li.appendChild(divs);
+  divs.appendChild(span);
+  divs.appendChild(p);
   li.appendChild(button);
 
   return li;
@@ -67,6 +71,14 @@ function addTask() {
     title: titleInput.value,
     type: typeInput.value
   };
+
+  if (newTask.type === 'Urgente') {
+    newTask.classList.add('span-urgent');
+  } else if (task.type === 'Importante') {
+    newTask.classList.add('span-important');
+  } else if (task.type === 'Normal') {
+    newTask.classList.add('span-normal');
+  }
 
   // Adicionando a nova tarefa ao array
   tasks.push(newTask);
